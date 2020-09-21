@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  picture: MyString
+  likes_cuantity: 1
+  re_tweet_cuantity: 1
+
+two:
+  content: MyString
+  picture: MyString
+  likes_cuantity: 1
+  re_tweet_cuantity: 1
