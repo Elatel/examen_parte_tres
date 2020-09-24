@@ -1,36 +1,35 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="<%= root_path %>">Felipe Letelier</a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user-circle-o" style="font-size:24px"></i>
-            <span class="caret"></span>
-          </a>
-          <!-- ¡Pending implementation! Should work toggling between sign_in and sign_out -->
-          <ul class="dropdown-menu">
-            <% if current_user %>
-            <li><%=link_to 'Create PicStory', new_tweet_path %></li>
-            <li><%=link_to 'My PicStories', tweet_path(current_user) %></li>
-            <li><%=link_to 'My Profile', edit_user_registration_path %></li>
-            <li role="separator" class="divider"></li>
-            <li><%=link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="<%= root_path %>">Felipe Letelier</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Perfil
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% if current_user %>
+              <p><%=link_to 'Create new Tweet', new_tweet_path %></p>
+              <p><%=link_to 'My Tweets', tweet_path(current_user) %></p>
+              <p><%=link_to 'My Profile', edit_user_registration_path %></p>
+              <p role="separator" class="divider"></p>
+              <p><%=link_to 'Log Out', destroy_user_session_path, method: :delete %></p>
           <% else %>
-            <li><%=link_to 'Sign In', new_user_session_path %></li>
-            <li><%=link_to 'Sign Up', new_user_registration_path %></li>
+              <p><%=link_to 'Sign In', new_user_session_path %></p>
+              <p><%=link_to 'Sign Up', new_user_registration_path %></p>
           <% end %>
-          </ul>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>
   </div>
 </nav>
+
+
+

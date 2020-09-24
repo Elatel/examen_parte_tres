@@ -9,31 +9,35 @@
   </div>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th>Picture</th>
-      <th>Likes cuantity</th>
-      <th>Re tweet cuantity</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
+  <% @tweets.reverse.each do |tweet| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail"
+        <%= tweet.picture %>>
+        <div class="caption">
+          <p><%= tweet.content.truncate(150) %></p>
+          <p><%= tweet.likes_cuantity %></p>
+          <p><%= tweet.re_tweet_cuantity %></p>
+          <p><%= link_to 'Show', tweet, class: "btn btn-outline-primary" %> 
+            <% if current_user&.id == tweet.user_id %>
+              <%= link_to 'Edit', edit_tweet_path(tweet), class: "btn btn-outline-info" %> 
+              <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></p>     
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-  <tbody>
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><%= tweet.content %></td>
-        <td><%= tweet.picture %></td>
-        <td><%= tweet.likes_cuantity %></td>
-        <td><%= tweet.re_tweet_cuantity %></td>
-        <td><%= link_to 'Show', tweet %></td>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
 <br>
 
+
+
+
 <%= link_to_next_page @tweets, 'Mostrar mas tweets' %>
+
+
+
+
+
