@@ -10,14 +10,13 @@
 </div>
 
 <div class="row">
-  <% @tweets.reverse.each do |tweet| %>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail"
-        <%= tweet.picture %>>
+  <% @tweets.each do |tweet| %>
+  <div class="col-sm-6 col-md-4">
+    <%= image_tag tweet.user.image_url %>
+    <%= link_to 'Like',tweet_likes_path(tweet), method: :post%>
+      <div class="thumbnail">
         <div class="caption">
           <p><%= tweet.content.truncate(150) %></p>
-          <p><%= tweet.likes_cuantity %></p>
-          <p><%= tweet.re_tweet_cuantity %></p>
           <p><%= link_to 'Show', tweet, class: "btn btn-outline-primary" %> 
             <% if current_user&.id == tweet.user_id %>
               <%= link_to 'Edit', edit_tweet_path(tweet), class: "btn btn-outline-info" %> 

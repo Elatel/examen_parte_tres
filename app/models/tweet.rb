@@ -1,3 +1,4 @@
 class Tweet < ApplicationRecord
-    paginates_per 50
+    has_many :likes
+    belongs_to :user
 end

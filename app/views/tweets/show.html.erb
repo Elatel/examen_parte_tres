@@ -12,7 +12,7 @@
 
 <p>
   <strong>Likes cuantity:</strong>
-  <%= @tweet.likes_cuantity %>
+  <%= link_to "Like", tweet_like_path(@tweet), method: :put, remote: :true %>
 </p>
 
 <p>
