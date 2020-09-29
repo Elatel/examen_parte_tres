@@ -26,7 +26,7 @@ class LikesController < ApplicationController
   def create
     @user = current_user.id
     @tweet = (params[:tweet_id]).to_i
-    likes = { user_id: @user, tweets_id: @tweet}
+    likes = { user_id: @user, tweet_id: @tweet}
     @like = Like.new(likes)
     @like.save!
     redirect_to root_path
@@ -51,7 +51,7 @@ class LikesController < ApplicationController
   def destroy
     @like.destroy
     respond_to do |format|
-      format.html { redirect_to likes_url, notice: 'Like was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'You have now unlike this content =´(' }
       format.json { head :no_content }
     end
   end

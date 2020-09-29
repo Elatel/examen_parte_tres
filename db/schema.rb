@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 2020_09_27_134303) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "tweets_id"
-    t.index ["tweets_id"], name: "index_likes_on_tweets_id"
+    t.bigint "tweet_id"
+    t.index ["tweet_id"], name: "index_likes_on_tweet_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_134303) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "likes", "tweets", column: "tweets_id"
+  add_foreign_key "likes", "tweets"
   add_foreign_key "likes", "users"
   add_foreign_key "tweets", "users"
 end
