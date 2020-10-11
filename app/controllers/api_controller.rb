@@ -3,6 +3,7 @@ class ApiController < ApplicationController
         @tweets = Tweet.all
         result = []
         @users = User.all
+
         @tweets.each do |tweet|
             @id = {"id"=>tweet.id}
             @id.merge!("content"=>tweet.content)
@@ -11,11 +12,20 @@ class ApiController < ApplicationController
             @id.merge!("like_count"=>@like)
             @re_tweet = Tweet.where(:origin_tweet=>tweet.id).count
             @id.merge!("retweet_count"=>@re_tweet)
-            @retweeted_from = Tweet.where(:origin_tweet=>@users)
-            @id.merge!("retweeted_from"=>@retweeted_from)
+            @retweeted_from = Tweet.where(:id=>tweet.origin_tweet)
+            if @retweeted_from.first != nil
+                @retweeted_from.each do |retweet|
+                    @from = retweet.id
+                    @id.merge!("retweeted_from"=>@from)
+                end
+            else
+                @retweeted_from = 0
+                @id.merge!("retweeted_from"=>@retweeted_from)
+                
+            end
             result.push(@id)
         end
-        render :json => result
+        render :json => result.last(50)
     end
 end
 
