@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :tweets do
     resources :likes
   end
+  get '/api/news' => 'api#news'
+  resources :api do 
+    resources :news
+  end
   root 'tweets#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
