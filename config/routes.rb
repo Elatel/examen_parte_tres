@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   resources :api do 
     resources :news
   end
+
+  post "/tweets/othertweet" => "tweets#othertweet", :as => :othertweet
+
+  get '/api/:fecha1/:fecha2' => 'api#date'
+
   root 'tweets#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -9,7 +9,7 @@ User.delete_all
   User.create([{ name: Faker::Name.name, email: Faker::Internet.email, image_url: Faker::LoremPixel.image,  password:"123456" ,password_confirmation:"123456" }])
 end
 
-120.times do
+60.times do
     user = rand(50)
     Tweet.create([{ content: Faker::Lorem.paragraph, user_id: user}])
 end
