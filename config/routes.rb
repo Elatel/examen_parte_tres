@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :news
   end
 
-  post "/tweets/othertweet" => "tweets#othertweet", :as => :othertweet
+  post '/api', action: :new_tweet, controller: 'api'
 
   get '/api/:fecha1/:fecha2' => 'api#date'
 

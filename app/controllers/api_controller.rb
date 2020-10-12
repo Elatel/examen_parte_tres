@@ -1,4 +1,7 @@
 class ApiController < ApplicationController
+    ActionController::HttpAuthentication::Basic::ControllerMethods
+    http_basic_authenticate_with name: "hello", password: "world", :except => ["news", "date"]
+    protect_from_forgery with: :null_session
     def news
         @tweets = Tweet.all
         result = []
@@ -59,7 +62,16 @@ class ApiController < ApplicationController
         render :json => result.last(50)
     end
 
-    
+    def create
+        @tweet = Tweet.create(tweet_params)
+        render :json => @tweet
+    end
+
+    private
+
+    def tweet_params
+        params.require(:tweet).permit(:content, :user_id, :origin_tweet)
+    end
 end
 
 
